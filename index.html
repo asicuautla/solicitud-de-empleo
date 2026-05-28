@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitud de Empleo — Confidencial</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="barra no-print" aria-label="Acciones">
+    <span class="barra-titulo">Solicitud de empleo</span>
+    <button type="button" id="btnGuardar">Guardar borrador</button>
+    <button type="button" id="btnCargar">Cargar borrador</button>
+    <button type="button" id="btnLimpiar">Limpiar</button>
+    <button type="button" id="btnImprimir" class="primario">Imprimir / PDF</button>
+  </header>
+
+  <form id="solicitud" class="formulario" novalidate>
+
+    <!-- ========== PÁGINA 1 ========== -->
+    <article class="pagina" id="pagina1">
+      <span class="pagina-etiqueta no-print">Hoja 1 de 2</span>
+      <div class="watermark" aria-hidden="true">CONFIDENCIAL</div>
+      <div class="pagina-interior">
+
+        <header class="doc-cabecera">
+          <div class="cabecera-texto">
+            <h1>SOLICITUD DE EMPLEO</h1>
+            <p class="confidencial">CONFIDENCIAL</p>
+          </div>
+          <aside class="foto-area" id="fotoBox">
+            <img id="fotoPreview" class="foto-preview" alt="Fotografía" hidden>
+            <div class="foto-vacio" id="fotoPlaceholder">Fotografía<br>3.5 × 4.5 cm</div>
+            <div class="foto-controles no-print">
+              <label for="fotoInput">Subir foto</label>
+              <input type="file" id="fotoInput" accept="image/jpeg,image/png,image/webp,image/gif" hidden>
+              <button type="button" id="btnQuitarFoto" class="quitar" hidden>Eliminar foto</button>
+            </div>
+          </aside>
+        </header>
+
+        <div class="bloque">
+          <div class="bloque-cuerpo grid grid-3">
+            <label class="campo"><span>Fecha</span><input type="date" name="fecha" id="fecha"></label>
+            <label class="campo"><span>Puesto solicitado</span><input type="text" name="puestoSolicitado" autocomplete="organization-title"></label>
+            <label class="campo"><span>Sueldo mensual deseado ($)</span><input type="text" name="sueldoDeseado" inputmode="decimal" placeholder="Ej. 12,000"></label>
+          </div>
+        </div>
+
+        <section class="bloque">
+          <h2 class="bloque-titulo">DATOS PERSONALES</h2>
+          <div class="bloque-cuerpo grid grid-4">
+            <label class="campo"><span>Apellido paterno</span><input type="text" name="apellidoPaterno" autocomplete="family-name"></label>
+            <label class="campo"><span>Apellido materno</span><input type="text" name="apellidoMaterno"></label>
+            <label class="campo g-span-2"><span>Nombre(s)</span><input type="text" name="nombres" autocomplete="given-name"></label>
+            <label class="campo"><span>Edad</span><input type="number" name="edad" id="edad" min="16" max="99"></label>
+            <label class="campo g-span-2"><span>Domicilio</span><input type="text" name="domicilio" autocomplete="street-address"></label>
+            <label class="campo"><span>Colonia</span><input type="text" name="colonia"></label>
+            <label class="campo"><span>Código postal</span><input type="text" name="codigoPostal" maxlength="5" inputmode="numeric"></label>
+            <label class="campo"><span>Teléfono</span><input type="tel" name="telefono" autocomplete="tel"></label>
+            <label class="campo g-span-2">
+              <span>Sexo</span>
+              <div class="grupo-opciones">
+                <label><input type="radio" name="sexo" value="masculino"> Masculino</label>
+                <label><input type="radio" name="sexo" value="femenino"> Femenino</label>
+              </div>
+            </label>
+            <label class="campo g-span-2"><span>Lugar de nacimiento</span><input type="text" name="lugarNacimiento"></label>
+            <label class="campo"><span>Fecha de nacimiento</span><input type="date" name="fechaNacimiento" id="fechaNacimiento"></label>
+            <label class="campo"><span>Nacionalidad</span><input type="text" name="nacionalidad" value="Mexicana"></label>
+            <div class="campo g-span-2">
+              <span>Vive con</span>
+              <div class="grupo-opciones">
+                <label><input type="radio" name="viveCon" value="padres"> Sus padres</label>
+                <label><input type="radio" name="viveCon" value="familia"> Su familia</label>
+                <label><input type="radio" name="viveCon" value="parientes"> Parientes</label>
+                <label><input type="radio" name="viveCon" value="solo"> Solo</label>
+              </div>
+            </div>
+            <label class="campo"><span>Estatura</span><input type="text" name="estatura" placeholder="Ej. 1.70 m"></label>
+            <label class="campo"><span>Peso</span><input type="text" name="peso" placeholder="Ej. 70 kg"></label>
+            <div class="campo g-span-2">
+              <span>Personas que dependen de usted</span>
+              <div class="grupo-opciones">
+                <label><input type="checkbox" name="dependeHijos" value="1"> Hijos</label>
+                <label><input type="checkbox" name="dependeConyuge" value="1"> Cónyuge</label>
+                <label><input type="checkbox" name="dependePadres" value="1"> Padres</label>
+                <label><input type="checkbox" name="dependeOtros" value="1"> Otros</label>
+              </div>
+            </div>
+            <div class="campo g-span-2">
+              <span>Estado civil</span>
+              <div class="grupo-opciones">
+                <label><input type="radio" name="estadoCivil" value="soltero"> Soltero</label>
+                <label><input type="radio" name="estadoCivil" value="casado"> Casado</label>
+                <label><input type="radio" name="estadoCivil" value="viudo"> Viudo</label>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="bloque">
+          <h2 class="bloque-titulo">DOCUMENTACIÓN</h2>
+          <div class="bloque-cuerpo grid grid-2">
+            <label class="campo"><span>RFC (Reg. Fed. de Contribuyentes) N°</span><input type="text" name="rfc"></label>
+            <label class="campo"><span>Afiliación al Seguro Social N°</span><input type="text" name="nss"></label>
+            <label class="campo"><span>Cartilla servicio militar N°</span><input type="text" name="cartillaMilitar"></label>
+            <label class="campo"><span>Pasaporte N°</span><input type="text" name="pasaporte"></label>
+            <div class="campo">
+              <span>¿Tiene licencia de manejo?</span>
+              <div class="grupo-opciones">
+                <label><input type="radio" name="licenciaManejo" value="no"> No</label>
+                <label><input type="radio" name="licenciaManejo" value="si"> Sí</label>
+              </div>
+            </div>
+            <label class="campo"><span>Número de licencia</span><input type="text" name="numeroLicencia"></label>
+            <label class="campo g-full"><span>Documento que le permite trabajar (extranjeros)</span><input type="text" name="docExtranjero"></label>
+            <label class="campo"><span>Credencial de elector N°</span><input type="text" name="credencialElector"></label>
+            <label class="campo"><span>CURP</span><input type="text" name="curp" maxlength="18"></label>
+            <label class="campo"><span>Afore N°</span><input type="text" name="afore"></label>
+          </div>
+        </section>
+
+        <section class="bloque">
+          <h2 class="bloque-titulo">ESTADO DE SALUD Y HÁBITOS PERSONALES</h2>
+          <div class="bloque-cuerpo grid grid-3">
+            <div class="campo">
+              <span>¿Cómo considera su estado de salud?</span>
+              <div class="grupo-opciones">
+                <label><input type="radio" name="salud" value="bueno"> Bueno</label>
+                <label><input type="radio" name="salud" value="regular"> Regular</label>
+                <label><input type="radio" name="salud" value="malo"> Malo</label>
+              </div>
+            </div>
+            <div class="campo">
+              <span>¿Enfermedad crónica?</span>
+              <div class="grupo-opciones">
+                <label><input type="radio" name="enfermedadCronica" value="no"> No</label>
+                <label><input type="radio" name="enfermedadCronica" value="si"> Sí</label>
+              </div>
+              <input type="text" name="enfermedadCronicaDetalle" placeholder="Explique" class="campo-detalle">
+            </div>
+            <div class="campo">
+              <span>¿Está embarazada?</span>
+              <div class="grupo-opciones">
+                <label><input type="radio" name="embarazada" value="no"> No</label>
+                <label><input type="radio" name="embarazada" value="si"> Sí</label>
+              </div>
+            </div>
+            <label class="campo"><span>¿Practica algún deporte?</span><input type="text" name="deporte"></label>
+            <label class="campo"><span>¿Club social o deportivo?</span><input type="text" name="club"></label>
+            <label class="campo"><span>Pasatiempo favorito</span><input type="text" name="pasatiempo"></label>
+            <label class="campo g-full"><span>Meta en la vida</span><input type="text" name="metaVida"></label>
+          </div>
+        </section>
+
+        <section class="bloque">
+          <h2 class="bloque-titulo">DATOS FAMILIARES</h2>
+          <table class="tabla-datos">
+            <thead>
+              <tr><th></th><th>Nombre</th><th class="col-chk">Vive</th><th class="col-chk">Finado</th><th>Domicilio</th><th>Ocupación</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>Padre</th><td><input name="fam_padre_nombre"></td><td class="col-chk"><input type="checkbox" name="fam_padre_vive" value="1"></td><td class="col-chk"><input type="checkbox" name="fam_padre_finado" value="1"></td><td><input name="fam_padre_domicilio"></td><td><input name="fam_padre_ocupacion"></td></tr>
+              <tr><th>Madre</th><td><input name="fam_madre_nombre"></td><td class="col-chk"><input type="checkbox" name="fam_madre_vive" value="1"></td><td class="col-chk"><input type="checkbox" name="fam_madre_finado" value="1"></td><td><input name="fam_madre_domicilio"></td><td><input name="fam_madre_ocupacion"></td></tr>
+              <tr><th>Esposa(o)</th><td><input name="fam_esposa_nombre"></td><td class="col-chk"><input type="checkbox" name="fam_esposa_vive" value="1"></td><td class="col-chk"><input type="checkbox" name="fam_esposa_finado" value="1"></td><td><input name="fam_esposa_domicilio"></td><td><input name="fam_esposa_ocupacion"></td></tr>
+            </tbody>
+          </table>
+          <label class="campo campo-borde-top">
+            <span>Nombre y edades de los hijos</span>
+            <input type="text" name="hijosNombreEdades">
+          </label>
+        </section>
+
+        <section class="bloque">
+          <h2 class="bloque-titulo">ESCOLARIDAD</h2>
+          <table class="tabla-datos">
+            <thead>
+              <tr><th></th><th>Escuela</th><th>Domicilio</th><th>Fechas</th><th>Años</th><th>Título recibido</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>Primaria</th><td><input name="esc_primaria_escuela"></td><td><input name="esc_primaria_domicilio"></td><td><input name="esc_primaria_fechas"></td><td><input name="esc_primaria_anos"></td><td><input name="esc_primaria_titulo"></td></tr>
+              <tr><th>Secundaria</th><td><input name="esc_secundaria_escuela"></td><td><input name="esc_secundaria_domicilio"></td><td><input name="esc_secundaria_fechas"></td><td><input name="esc_secundaria_anos"></td><td><input name="esc_secundaria_titulo"></td></tr>
+              <tr><th>Preparatoria</th><td><input name="esc_prep_escuela"></td><td><input name="esc_prep_domicilio"></td><td><input name="esc_prep_fechas"></td><td><input name="esc_prep_anos"></td><td><input name="esc_prep_titulo"></td></tr>
+              <tr><th>Profesional</th><td><input name="esc_prof_escuela"></td><td><input name="esc_prof_domicilio"></td><td><input name="esc_prof_fechas"></td><td><input name="esc_prof_anos"></td><td><input name="esc_prof_titulo"></td></tr>
+              <tr><th>Comercial u otras</th><td><input name="esc_com_escuela"></td><td><input name="esc_com_domicilio"></td><td><input name="esc_com_fechas"></td><td><input name="esc_com_anos"></td><td><input name="esc_com_titulo"></td></tr>
+            </tbody>
+          </table>
+          <p class="sub-bloque">Estudios que está efectuando actualmente</p>
+          <div class="bloque-cuerpo grid grid-4">
+            <label class="campo"><span>Escuela</span><input type="text" name="estudiosActEscuela"></label>
+            <label class="campo"><span>Horario</span><input type="text" name="estudiosActHorario"></label>
+            <label class="campo"><span>Curso o carrera</span><input type="text" name="estudiosActCurso"></label>
+            <label class="campo"><span>Grado</span><input type="text" name="estudiosActGrado"></label>
+          </div>
+        </section>
+
+      </div>
+    </article>
+
+    <!-- ========== PÁGINA 2 ========== -->
+    <article class="pagina" id="pagina2">
+      <span class="pagina-etiqueta no-print">Hoja 2 de 2</span>
+      <div class="watermark" aria-hidden="true">CONFIDENCIAL</div>
+      <div class="pagina-interior">
+
+        <section class="bloque">
+          <h2 class="bloque-titulo">CONOCIMIENTOS GENERALES</h2>
+          <div class="bloque-cuerpo grid grid-2">
+            <label class="campo"><span>Idiomas que domina</span><input type="text" name="idiomas"></label>
+            <label class="campo"><span>Funciones de oficina que domina</span><input type="text" name="funcionesOficina"></label>
+            <label class="campo g-full"><span>Máquinas de oficina o equipo que maneja</span><input type="text" name="maquinasOficina"></label>
+            <label class="campo g-full"><span>Otros trabajos o funciones que domina</span><input type="text" name="otrosTrabajos"></label>
+            <label class="campo g-full"><span>Información adicional</span><input type="text" name="conocimientosExtra"></label>
+          </div>
+        </section>
+
+        <section class="bloque">
+          <h2 class="bloque-titulo">EMPLEO ACTUAL Y ANTERIORES</h2>
+          <table class="tabla-datos">
+            <thead>
+              <tr>
+                <th>Concepto</th>
+                <th>Empleo actual o último</th>
+                <th>Empleo anterior</th>
+                <th>Empleo anterior</th>
+                <th>Empleo anterior</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th>Tiempo de servicio</th><td><input name="emp_actual_tiempo"></td><td><input name="emp_ant1_tiempo"></td><td><input name="emp_ant2_tiempo"></td><td><input name="emp_ant3_tiempo"></td></tr>
+              <tr><th>Empresa</th><td><input name="emp_actual_empresa"></td><td><input name="emp_ant1_empresa"></td><td><input name="emp_ant2_empresa"></td><td><input name="emp_ant3_empresa"></td></tr>
+              <tr><th>Domicilio</th><td><input name="emp_actual_domicilio"></td><td><input name="emp_ant1_domicilio"></td><td><input name="emp_ant2_domicilio"></td><td><input name="emp_ant3_domicilio"></td></tr>
+              <tr><th>Teléfono</th><td><input name="emp_actual_telefono"></td><td><input name="emp_ant1_telefono"></td><td><input name="emp_ant2_telefono"></td><td><input name="emp_ant3_telefono"></td></tr>
+              <tr><th>Puesto</th><td><input name="emp_actual_puesto"></td><td><input name="emp_ant1_puesto"></td><td><input name="emp_ant2_puesto"></td><td><input name="emp_ant3_puesto"></td></tr>
+              <tr><th>Sueldo</th><td><input name="emp_actual_sueldo"></td><td><input name="emp_ant1_sueldo"></td><td><input name="emp_ant2_sueldo"></td><td><input name="emp_ant3_sueldo"></td></tr>
+              <tr><th>Motivo de separación</th><td><input name="emp_actual_motivo"></td><td><input name="emp_ant1_motivo"></td><td><input name="emp_ant2_motivo"></td><td><input name="emp_ant3_motivo"></td></tr>
+              <tr><th>Jefe directo</th><td><input name="emp_actual_jefe"></td><td><input name="emp_ant1_jefe"></td><td><input name="emp_ant2_jefe"></td><td><input name="emp_ant3_jefe"></td></tr>
+              <tr><th>Puesto del jefe</th><td><input name="emp_actual_jefePuesto"></td><td><input name="emp_ant1_jefePuesto"></td><td><input name="emp_ant2_jefePuesto"></td><td><input name="emp_ant3_jefePuesto"></td></tr>
+            </tbody>
+          </table>
+          <div class="fila-informes">
+            <span>¿Podemos solicitar informes de usted?</span>
+            <label><input type="radio" name="informes" value="si"> Sí</label>
+            <label><input type="radio" name="informes" value="no"> No (razones)</label>
+            <input type="text" name="informesRazones" placeholder="Razones">
+          </div>
+        </section>
+
+        <section class="bloque">
+          <h2 class="bloque-titulo">REFERENCIAS PERSONALES</h2>
+          <table class="tabla-datos">
+            <thead>
+              <tr><th>Nombre</th><th>Domicilio</th><th>Teléfono</th><th>Ocupación</th><th>Tiempo de conocerlo</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><input name="ref1_nombre"></td><td><input name="ref1_domicilio"></td><td><input name="ref1_telefono"></td><td><input name="ref1_ocupacion"></td><td><input name="ref1_tiempo"></td></tr>
+              <tr><td><input name="ref2_nombre"></td><td><input name="ref2_domicilio"></td><td><input name="ref2_telefono"></td><td><input name="ref2_ocupacion"></td><td><input name="ref2_tiempo"></td></tr>
+              <tr><td><input name="ref3_nombre"></td><td><input name="ref3_domicilio"></td><td><input name="ref3_telefono"></td><td><input name="ref3_ocupacion"></td><td><input name="ref3_tiempo"></td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <div class="grid-preguntas">
+          <div class="tarjeta-preguntas">
+            <h2 class="bloque-titulo">DATOS GENERALES</h2>
+            <div class="lista-preguntas">
+              <div class="item-pregunta">
+                <p>¿Cómo supo de este empleo?</p>
+                <div class="grupo-opciones">
+                  <label><input type="radio" name="comoSupo" value="anuncio"> Anuncio</label>
+                  <label><input type="radio" name="comoSupo" value="otro"> Otro medio</label>
+                </div>
+                <input type="text" name="comoSupoOtro" placeholder="Especifique">
+              </div>
+              <div class="item-pregunta">
+                <p>¿Parientes en esta empresa?</p>
+                <div class="grupo-opciones">
+                  <label><input type="radio" name="parientes" value="no"> No</label>
+                  <label><input type="radio" name="parientes" value="si"> Sí</label>
+                </div>
+                <input type="text" name="parientesDetalle" placeholder="Nombre y parentesco">
+              </div>
+              <div class="item-pregunta">
+                <p>¿Ha estado afianzado?</p>
+                <div class="grupo-opciones">
+                  <label><input type="radio" name="afianzado" value="no"> No</label>
+                  <label><input type="radio" name="afianzado" value="si"> Sí</label>
+                </div>
+                <input type="text" name="afianzadoDetalle" placeholder="Nombre de la compañía">
+              </div>
+              <div class="item-pregunta">
+                <p>¿Afiliado a algún sindicato?</p>
+                <div class="grupo-opciones">
+                  <label><input type="radio" name="sindicato" value="no"> No</label>
+                  <label><input type="radio" name="sindicato" value="si"> Sí</label>
+                </div>
+                <input type="text" name="sindicatoDetalle" placeholder="¿Cuál?">
+              </div>
+              <div class="item-pregunta">
+                <p>¿Tiene seguro de vida?</p>
+                <div class="grupo-opciones">
+                  <label><input type="radio" name="seguroVida" value="no"> No</label>
+                  <label><input type="radio" name="seguroVida" value="si"> Sí</label>
+                </div>
+                <input type="text" name="seguroVidaDetalle" placeholder="Compañía">
+              </div>
+              <div class="item-pregunta">
+                <p>¿Puede viajar?</p>
+                <div class="grupo-opciones">
+                  <label><input type="radio" name="viajar" value="si"> Sí</label>
+                  <label><input type="radio" name="viajar" value="no"> No</label>
+                </div>
+                <input type="text" name="viajarRazones" placeholder="Razones">
+              </div>
+              <div class="item-pregunta">
+                <p>¿Dispuesto a cambiar de residencia?</p>
+                <div class="grupo-opciones">
+                  <label><input type="radio" name="cambiarResidencia" value="si"> Sí</label>
+                  <label><input type="radio" name="cambiarResidencia" value="no"> No</label>
+                </div>
+                <input type="text" name="cambiarResidenciaRazones" placeholder="Razones">
+              </div>
+              <div class="item-pregunta">
+                <p>Fecha en que puede presentarse a trabajar</p>
+                <input type="text" name="fechaPresentarse" placeholder="Inmediatamente">
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-preguntas">
+            <h2 class="bloque-titulo">DATOS ECONÓMICOS</h2>
+            <div class="lista-preguntas">
+              <div class="item-pregunta">
+                <p>¿Otros ingresos?</p>
+                <div class="grupo-opciones">
+                  <label><input type="radio" name="otrosIngresos" value="no"> No</label>
+                  <label><input type="radio" name="otrosIngresos" value="si"> Sí</label>
+                </div>
+                <input type="text" name="otrosIngresosDetalle" placeholder="Descríbalos">
+              </div>
+              <div class="item-pregunta">
+                <p>¿Su cónyuge trabaja?</p>
+                <div class="grupo-opciones">
+                  <label><input type="radio" name="conyugeTrabaja" value="no"> No</label>
+                  <label><input type="radio" name="conyugeTrabaja" value="si"> Sí</label>
+                </div>
+                <input type="text" name="conyugeTrabajaDetalle" placeholder="¿Dónde?">
+              </div>
+              <div class="item-pregunta">
+                <p>¿Vive en casa propia?</p>
+                <div class="grupo-opciones">
+                  <label><input type="radio" name="casaPropia" value="no"> No</label>
+                  <label><input type="radio" name="casaPropia" value="si"> Sí</label>
+                </div>
+              </div>
+              <div class="item-pregunta">
+                <p>¿Paga renta?</p>
+                <div class="grupo-opciones">
+                  <label><input type="radio" name="pagaRenta" value="no"> No</label>
+                  <label><input type="radio" name="pagaRenta" value="si"> Sí</label>
+                </div>
+              </div>
+              <div class="item-pregunta">
+                <p>¿Tiene automóvil?</p>
+                <div class="grupo-opciones">
+                  <label><input type="radio" name="automovil" value="no"> No</label>
+                  <label><input type="radio" name="automovil" value="si"> Sí</label>
+                </div>
+              </div>
+              <div class="item-pregunta">
+                <p>¿Tiene deudas?</p>
+                <div class="grupo-opciones">
+                  <label><input type="radio" name="deudas" value="no"> No</label>
+                  <label><input type="radio" name="deudas" value="si"> Sí</label>
+                </div>
+                <input type="text" name="deudasDetalle" placeholder="¿Con quién?">
+              </div>
+              <div class="item-pregunta">
+                <p>¿Cuánto abona mensualmente?</p>
+                <input type="text" name="abonoMensual" placeholder="$">
+              </div>
+              <div class="item-pregunta">
+                <p>¿Gastos mensuales aproximados?</p>
+                <input type="text" name="gastosMensuales" placeholder="$">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pie-pagina">
+          <div class="caja-obs">
+            <h2 class="bloque-titulo">OBSERVACIONES</h2>
+            <div class="etiqueta-gris">Comentarios del entrevistador</div>
+            <textarea name="observaciones" rows="3"></textarea>
+          </div>
+          <div class="caja-firma">
+            <div class="declaracion">Hago constar que mis respuestas son verdaderas</div>
+            <div class="firma-zona">
+              <div class="espacio-firma" aria-hidden="true"></div>
+              <div class="linea-firma" role="presentation"></div>
+              <span class="firma-etiqueta">Firma del solicitante</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+  </form>
+
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
